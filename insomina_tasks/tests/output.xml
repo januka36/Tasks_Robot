@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1.1 (Python 3.10.2 on win32)" generated="20231106 12:26:38.661" rpa="true" schemaversion="4">
+<suite id="s1" name="Task 001" source="C:\Users\januk\Desktop\HungerLink\Tasks_Robot\insomina_tasks\tests\task_001.robot">
+<test id="s1-t1" name="Add_Region" line="16">
+<kw name="Given the API endpoint for adding a region is available">
+<kw name="Set Variable" library="BuiltIn">
+<var>${API_Endpoint}</var>
+<arg>${API_ROOT}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20231106 12:26:38.827" level="INFO">${API_Endpoint} = https://uluru-01-pdhwkxq43q-ue.a.run.app/jsonrpc</msg>
+<status status="PASS" starttime="20231106 12:26:38.827" endtime="20231106 12:26:38.827"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<var>${API_Endpoint}</var>
+<arg>${API_Endpoint}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20231106 12:26:38.827" level="INFO">${API_Endpoint} = https://uluru-01-pdhwkxq43q-ue.a.run.app/jsonrpc</msg>
+<msg timestamp="20231106 12:26:38.827" level="INFO">${API_Endpoint} = None</msg>
+<status status="PASS" starttime="20231106 12:26:38.827" endtime="20231106 12:26:38.827"/>
+</kw>
+<status status="PASS" starttime="20231106 12:26:38.827" endtime="20231106 12:26:38.827"/>
+</kw>
+<kw name="When a POST request is sent to the API endpoint with region data">
+<var>${response_data}</var>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>API_Testing</arg>
+<arg>${API_ROOT}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231106 12:26:38.827" level="INFO">Creating Session using : alias=API_Testing, url=https://uluru-01-pdhwkxq43q-ue.a.run.app/jsonrpc, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20231106 12:26:38.827" endtime="20231106 12:26:38.827"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${region_data}</var>
+<arg>${RequestData}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20231106 12:26:38.827" level="INFO">${region_data} = {"jsonrpc": "2.0+hl","id": 1,"method": "cdr:region:add","version": 1,"params": {"title": "Etobicoke","country_code": "CAN","tz": "America/Toronto"},"auth": {"type": "hl_session","token": "4689f08c3819...</msg>
+<status status="PASS" starttime="20231106 12:26:38.827" endtime="20231106 12:26:38.827"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${Headers}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20231106 12:26:38.827" level="INFO">${Headers} = {'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20231106 12:26:38.827" endtime="20231106 12:26:38.827"/>
+</kw>
+<kw name="POST On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>API_Testing</arg>
+<arg>${API_Endpoint}</arg>
+<arg>data=${region_data}</arg>
+<arg>headers=${Headers}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20231106 12:26:43.471" level="INFO">POST Request : url=https://uluru-01-pdhwkxq43q-ue.a.run.app/jsonrpc 
+ path_url=/jsonrpc 
+ headers={'User-Agent': 'python-requests/2.27.1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '447'} 
+ body={"jsonrpc": "2.0+hl","id": 1,"method": "cdr:region:add","version": 1,"params": {"title": "Etobicoke","country_code": "CAN","tz": "America/Toronto"},"auth": {"type": "hl_session","token": "4689f08c3819861647fa8653f19c0a4ac4234b940f12d26e3836609af96a3f780b32e80f58bd853c3535c03c581ad76e2629a0a6ebf8673e73cf3757314f47d26ba5ff3d579d4612abe3a64e8429c338d11c92c6d32ad6f8403efe8f4fb9f6ea91ec96546e4269fe01d58d377873bde170abf89a9b6edc13287f16b96715f673"}} 
+ </msg>
+<msg timestamp="20231106 12:26:43.471" level="INFO">POST Response : url=https://uluru-01-pdhwkxq43q-ue.a.run.app/jsonrpc 
+ status=200, reason=OK 
+ headers={'vary': 'Origin', 'access-control-allow-origin': '*', 'content-type': 'application/json; charset=utf-8', 'X-Cloud-Trace-Context': 'bddcfe7cc516e0dae870d9ae9fc1fd23;o=1', 'Date': 'Mon, 06 Nov 2023 06:56:44 GMT', 'Server': 'Google Frontend', 'Content-Length': '225', 'Alt-Svc': 'h3=":443"; ma=2592000,h3-29=":443"; ma=2592000'} 
+ body={"jsonrpc":"2.0+hl","id":1,"method":"cdr:region:add","version":1,"result":{"type":"cdr:region","_id":"65488e284f49db254885428a","title":"Etobicoke","tz":"America/Toronto","continent_code":"northamerica","country_code":"CAN"}} 
+ </msg>
+<msg timestamp="20231106 12:26:43.471" level="INFO">C:\Users\januk\AppData\Local\Programs\Python\Python310\lib\site-packages\urllib3\connectionpool.py:1043: InsecureRequestWarning: Unverified HTTPS request is being made to host 'uluru-01-pdhwkxq43q-ue.a.run.app'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20231106 12:26:43.471" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20231106 12:26:38.827" endtime="20231106 12:26:43.471"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${Get_Response_Content}</var>
+<arg>${response.content}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20231106 12:26:43.471" level="INFO">${Get_Response_Content} = {"jsonrpc":"2.0+hl","id":1,"method":"cdr:region:add","version":1,"result":{"type":"cdr:region","_id":"65488e284f49db254885428a","title":"Etobicoke","tz":"America/Toronto","continent_code":"northameric...</msg>
+<status status="PASS" starttime="20231106 12:26:43.471" endtime="20231106 12:26:43.471"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${json_dict}</var>
+<arg>json.loads('''${Get_Response_Content}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20231106 12:26:43.486" level="INFO">${json_dict} = {'jsonrpc': '2.0+hl', 'id': 1, 'method': 'cdr:region:add', 'version': 1, 'result': {'type': 'cdr:region', '_id': '65488e284f49db254885428a', 'title': 'Etobicoke', 'tz': 'America/Toronto', 'continent_c...</msg>
+<status status="PASS" starttime="20231106 12:26:43.486" endtime="20231106 12:26:43.486"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${json_dict}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20231106 12:26:43.486" endtime="20231106 12:26:43.486"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>${response_data}</arg>
+<arg>${json_dict}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20231106 12:26:43.486" level="INFO">${response_data} = {'jsonrpc': '2.0+hl', 'id': 1, 'method': 'cdr:region:add', 'version': 1, 'result': {'type': 'cdr:region', '_id': '65488e284f49db254885428a', 'title': 'Etobicoke', 'tz': 'America/Toronto', 'continent_c...</msg>
+<status status="PASS" starttime="20231106 12:26:43.486" endtime="20231106 12:26:43.486"/>
+</kw>
+<msg timestamp="20231106 12:26:43.486" level="INFO">${response_data} = {'jsonrpc': '2.0+hl', 'id': 1, 'method': 'cdr:region:add', 'version': 1, 'result': {'type': 'cdr:region', '_id': '65488e284f49db254885428a', 'title': 'Etobicoke', 'tz': 'America/Toronto', 'continent_c...</msg>
+<status status="PASS" starttime="20231106 12:26:38.827" endtime="20231106 12:26:43.486"/>
+</kw>
+<kw name="And the response should contain the added region details">
+<kw name="Get From Dictionary" library="Collections">
+<var>${result}</var>
+<arg>${response_data}</arg>
+<arg>result</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20231106 12:26:43.486" level="INFO">${result} = {'type': 'cdr:region', '_id': '65488e284f49db254885428a', 'title': 'Etobicoke', 'tz': 'America/Toronto', 'continent_code': 'northamerica', 'country_code': 'CAN'}</msg>
+<status status="PASS" starttime="20231106 12:26:43.486" endtime="20231106 12:26:43.486"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${result}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20231106 12:26:43.486" endtime="20231106 12:26:43.486"/>
+</kw>
+<kw name="Dictionary Should Contain Key" library="Collections">
+<arg>${result}</arg>
+<arg>_id</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" starttime="20231106 12:26:43.486" endtime="20231106 12:26:43.486"/>
+</kw>
+<kw name="Dictionary Should Contain Key" library="Collections">
+<arg>${result}</arg>
+<arg>title</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" starttime="20231106 12:26:43.486" endtime="20231106 12:26:43.486"/>
+</kw>
+<kw name="Dictionary Should Contain Key" library="Collections">
+<arg>${result}</arg>
+<arg>tz</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<status status="PASS" starttime="20231106 12:26:43.486" endtime="20231106 12:26:43.491"/>
+</kw>
+<kw name="Dictionary Should Contain Key" library="Collections">
+<arg>${result}</arg>
+<arg>hello</arg>
+<doc>Fails if ``key`` is not found from ``dictionary``.</doc>
+<msg timestamp="20231106 12:26:43.491" level="FAIL">Dictionary does not contain key 'hello'.</msg>
+<status status="FAIL" starttime="20231106 12:26:43.491" endtime="20231106 12:26:43.491"/>
+</kw>
+<status status="FAIL" starttime="20231106 12:26:43.486" endtime="20231106 12:26:43.491"/>
+</kw>
+<doc>Send an API request to add a new region.</doc>
+<tag>API, Region</tag>
+<status status="FAIL" starttime="20231106 12:26:38.827" endtime="20231106 12:26:43.492">Dictionary does not contain key 'hello'.</status>
+</test>
+<status status="FAIL" starttime="20231106 12:26:38.661" endtime="20231106 12:26:43.493"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tasks</stat>
+</total>
+<tag>
+<stat pass="0" fail="1" skip="0">API, Region</stat>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Task 001">Task 001</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20231106 12:26:38.827" level="ERROR">Error in file 'C:\Users\januk\Desktop\HungerLink\Tasks_Robot\insomina_tasks\tests\task_001.robot' on line 7: Importing library 'RPA.Tasks' failed: ModuleNotFoundError: No module named 'RPA'
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  C:\Users\januk\AppData\Local\Programs\Python\Python310\Scripts\robot.exe
+  C:\Users\januk\AppData\Local\Programs\Python\Python310\python310.zip
+  C:\Users\januk\AppData\Local\Programs\Python\Python310\DLLs
+  C:\Users\januk\AppData\Local\Programs\Python\Python310\lib
+  C:\Users\januk\AppData\Local\Programs\Python\Python310
+  C:\Users\januk\AppData\Local\Programs\Python\Python310\lib\site-packages
+  C:\Users\januk\AppData\Local\Programs\Python\Python310\lib\site-packages\win32
+  C:\Users\januk\AppData\Local\Programs\Python\Python310\lib\site-packages\win32\lib
+  C:\Users\januk\AppData\Local\Programs\Python\Python310\lib\site-packages\Pythonwin</msg>
+</errors>
+</robot>
